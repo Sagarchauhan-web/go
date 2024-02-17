@@ -19,6 +19,32 @@ package main
 
 import "fmt"
 
-func main() {
+type rectangle struct {
+	length int
+	width int
+}
 
+func calculateAreaAndPerimeter(rec rectangle) (int, int) {
+	 area := rec.length * rec.width
+	 perimeter := (2 * (rec.length + rec.width))
+	return area,perimeter
+}
+
+func twoFoldRectangle(rec rectangle) (rectangle) {
+	rec.length *= 2
+	rec.width *= 2
+	return rec
+}
+
+func main() {
+	rec := rectangle{5,10};
+
+	area, perimeter := calculateAreaAndPerimeter(rec)
+	fmt.Println("Area: ",area, "Perimeter",perimeter)
+
+	rec = twoFoldRectangle(rec)
+	fmt.Println(rec.length,"length", rec.width,"width")
+
+	area2, perimeter2 := calculateAreaAndPerimeter(rec)
+	fmt.Println("Area: ",area2, "Perimeter",perimeter2)
 }
