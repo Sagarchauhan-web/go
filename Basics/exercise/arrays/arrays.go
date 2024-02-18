@@ -23,8 +23,7 @@ type Product struct {
 	price float64
 }
 
-func productDetails(products []Product) {
-	var lastItem Product
+func productDetails(products [4]Product) {
 	var totalCost float64
 	var totalItems int
 
@@ -35,25 +34,24 @@ func productDetails(products []Product) {
 			break
 		}
 
-		lastItem = currentItem
 		totalCost += currentItem.price
 		totalItems += 1
 	}
 	fmt.Println(totalCost, "TotalCost",totalItems,
-	"total Items",lastItem.name,"lastItem" ,"here")
+	"total Items",products[totalItems - 1].name,"lastItem" ,"here")
 }
 
 func main() {
-	productList := []Product{
+	productList := [4]Product{
 		{name: "towel", price: 50},
 		{name: "shampoo", price: 10},
 		{name: "soap", price: 10},
 	}
 
-	productDetails([]Product(productList))
+	productDetails([4]Product(productList))
 	
-	productList = append(productList, Product{name: "conditioner", price: 50})
+	productList[3] =  Product{name: "conditioner", price: 50}
 	
-	productDetails([]Product(productList))
+	productDetails([4]Product(productList))
 }
 
