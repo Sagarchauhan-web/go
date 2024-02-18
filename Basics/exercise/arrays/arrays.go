@@ -18,6 +18,42 @@ package main
 
 import "fmt"
 
-func main() {
-
+type Product struct {
+	name string
+	price float64
 }
+
+func productDetails(products []Product) {
+	var lastItem Product
+	var totalCost float64
+	var totalItems int
+
+	for i := 0; i < len(products); i++ {
+		currentItem := products[i]
+
+		if currentItem.name == "" {
+			break
+		}
+
+		lastItem = currentItem
+		totalCost += currentItem.price
+		totalItems += 1
+	}
+	fmt.Println(totalCost, "TotalCost",totalItems,
+	"total Items",lastItem.name,"lastItem" ,"here")
+}
+
+func main() {
+	productList := []Product{
+		{name: "towel", price: 50},
+		{name: "shampoo", price: 10},
+		{name: "soap", price: 10},
+	}
+
+	productDetails([]Product(productList))
+	
+	productList = append(productList, Product{name: "conditioner", price: 50})
+	
+	productDetails([]Product(productList))
+}
+
