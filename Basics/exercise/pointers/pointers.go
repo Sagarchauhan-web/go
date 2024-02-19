@@ -18,6 +18,38 @@ package main
 
 import "fmt"
 
-func main() {
+const (
+	Active = true
+	Inactive = false
+)
 
+type Item struct {
+	name string
+	tag bool
+}
+
+func changeTagOfItem(item *Item, tagToChange bool) {
+	item.tag = tagToChange
+}
+
+func checkout(items *[]Item) {
+	for i := range *items {
+		(*items)[i].tag = Inactive
+	}
+}
+
+func main() {
+	shoppingItems := []Item{
+		{name:"towel", tag:Active},
+		{name:"soap", tag:Active},
+		{name:"shampoo", tag:Active},
+		{name:"conditioner", tag:Active},
+	}
+	fmt.Println("shoppingItems",shoppingItems)
+
+	changeTagOfItem(&shoppingItems[0], Inactive)
+	fmt.Println("shoppingItems",shoppingItems)
+
+	checkout(&shoppingItems)
+	fmt.Println("shoppingItems",shoppingItems)
 }
