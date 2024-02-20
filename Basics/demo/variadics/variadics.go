@@ -10,7 +10,7 @@ func sum(nums ...int) int {
 	return sum
 }
 
-func main() {
+func main() { 
 	a := []int{1,2,3}
 	b := []int{1,2,3}
 

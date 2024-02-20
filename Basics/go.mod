@@ -1,3 +1,3 @@
-module coursecontent
+module basic
 
 go 1.17
