@@ -21,6 +21,34 @@ package main
 
 import "fmt"
 
-func main() {
+type vehicalDirector interface {
+	drive()
+}
 
+type Truck string
+type Car string
+type Motorcycle string
+
+func (t Truck) drive() {
+	fmt.Println("Driving to large lifts")
+}
+func (c Car) drive() {
+	fmt.Println("Driving to standard lifts")
+}
+func (m Motorcycle) drive() {
+	fmt.Println("Driving to small lifts")
+}
+
+func driveVehicle(vehicals []vehicalDirector) {
+	for i := 0; i < len(vehicals); i++ {
+		vehicle := vehicals[i]
+		fmt.Printf("--Vehicle: %v--\n", vehicle)
+		vehicle.drive()
+	}
+	fmt.Println()
+}
+
+func main() {
+	i := []vehicalDirector{Truck("Road devour"), Car("mercedes"), Motorcycle("kavasaki")}
+	driveVehicle(i)
 }
