@@ -18,7 +18,18 @@
 
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"unicode"
+)
+
+type LineCallback func(line string)
+
+func lineIterator(lines []string, callback LineCallback) {
+	for i := 0; i < len(lines); i++ {
+		callback(lines[i])
+	}
+}
 
 func main() {
 	lines := []string{
@@ -28,4 +39,30 @@ func main() {
 		"12 spaces,",
 		"and 4 punctuation marks in these lines of text!",
 	}
+
+	letters := 0
+	number := 0
+	punctuation := 0
+	spaces := 0
+
+	lineFunc := func(line string) {
+		for _, ch := range line {
+			if unicode.IsLetter(ch) {
+				letters++
+			} else if unicode.IsNumber(ch) {
+				number++
+			} else if unicode.IsPunct(ch) {
+				punctuation++
+			} else if unicode.IsSpace(ch) {
+				spaces++
+			}
+		}
+	}
+
+	lineIterator(lines, lineFunc)
+
+	fmt.Println("Letters:", letters)
+	fmt.Println("Numbers:", number)
+	fmt.Println("Spaces:", spaces)
+	fmt.Println("Punctuation:", punctuation)
 }
